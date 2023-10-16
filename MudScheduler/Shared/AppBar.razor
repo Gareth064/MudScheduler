@@ -1,0 +1,28 @@
+﻿<MudButton Href="/"
+           Color="Color.Primary"
+           Variant="Variant.Filled"
+           Size="Size.Small"
+           Class="mr-4">
+    Schedule
+</MudButton>
+<MudButton Href="/horizontalscroll"
+           Color="Color.Inherit"
+           Variant="Variant.Outlined"
+           Size="Size.Small">
+    Horizontal Scroll Test
+</MudButton>
+<MudSpacer />
+<MudMenu AnchorOrigin="Origin.BottomRight" TransformOrigin="Origin.BottomRight" Dense>
+    <ActivatorContent>
+        <MudAvatar Size="Size.Medium" Image="/user.png" />
+    </ActivatorContent>
+    <ChildContent>
+        <MudMenuItem Icon="@Icons.Material.Outlined.Settings">Settings</MudMenuItem>
+        <MudMenuItem Icon="@Icons.Material.Outlined.Help">Help</MudMenuItem>
+        <MudMenuItem Icon="@Icons.Material.Outlined.Update">Product Updates</MudMenuItem>
+    </ChildContent>
+</MudMenu>
+
+@code {
+
+}

@@ -1,0 +1,38 @@
+﻿<MudPaper Elevation="0"
+          MaxHeight="40px"
+          Class="mx-0 mt-0"
+          Style="margin-top:2px; border-radius: 0px !important; background-color:whitesmoke">
+
+    <MudToolBar Style="max-height:inherit; border-bottom: 1px solid #c3c3c3;">
+
+        <MudButton Size="Size.Small" Variant="Variant.Text" Class="mr-5">Today</MudButton>
+
+        <div class="mr-5">
+            <MudTooltip Text="Previous Week"><MudIconButton Size="Size.Small" Icon="@Icons.Material.Filled.ArrowBack" /></MudTooltip>
+            <MudTooltip Text="Next Week"><MudIconButton Size="Size.Small" Icon="@Icons.Material.Filled.ArrowForward" /></MudTooltip>
+        </div>
+
+        <MudTooltip Text="Select a Month">
+            <MudMenu>
+                <ActivatorContent>
+                    <MudIconButton Size="Size.Small" Icon="@Icons.Material.Filled.CalendarMonth" />
+                </ActivatorContent>
+                <ChildContent>
+                    <MudDatePicker PickerVariant="PickerVariant.Static"
+                                   AutoClose="true"
+                                   DisableToolbar="true"
+                                   OpenTo="OpenTo.Month"
+                                   FixDay="1" />
+                </ChildContent>
+            </MudMenu>
+        </MudTooltip>
+        <MudSpacer />
+        <MudIconButton Size="Size.Small" Icon="@Icons.Material.Filled.Refresh" />
+    </MudToolBar>
+</MudPaper>
+
+<ScheduleRow />
+
+@code {
+
+}

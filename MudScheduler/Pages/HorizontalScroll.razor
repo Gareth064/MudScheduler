@@ -1,0 +1,63 @@
+﻿@page "/horizontalscroll"
+
+<h3>HorizontalScroll</h3>
+
+@*<div class="ma-10" style="width: 800px; overflow-x: scroll;">*@
+    <MudStack Row Spacing="0" Class="ma-10" Style="overflow-x: scroll">
+        <MudVirtualize Items="@(GetDates(DateTime.Now,100))" OverscanCount="10">
+            <div class="pa-2" style="width: 100px; border: 1px solid #c3c3c3;">
+                <MudText Typo="Typo.body1">@context.FormatedShortDate</MudText>
+            </div>
+        </MudVirtualize>
+    </MudStack>
+@*</div>*@
+
+
+
+@code {
+    public class Resource
+    {
+        public string Name { get; set; }
+    }
+
+    public class Event
+    {
+        public string EventTitle { get; set; }
+        public Resource Person { get; set; }
+        public DateTime EventDate { get; set; }
+    }
+
+    public class DateField
+    {
+        public string DayName { get; set; }
+        public int WeekNumber { get; set; }
+        public string FormatedShortDate { get; set; }
+        public DateTime TheDate { get; set; }
+    }
+
+    static List<DateField> GetDates(DateTime startDate, int monthsFromStartDateToReturn)
+    {
+        var datesToReturn = new List<DateField>();
+        var firstDayOfMonthFromStartDate = new DateTime(startDate.Year, startDate.Month, 1);
+        var lastDayOfMonthAfterAddingMonths = (firstDayOfMonthFromStartDate.AddMonths(monthsFromStartDateToReturn + 1)).AddDays(-1);
+        var numberOfDaysToReturn = (lastDayOfMonthAfterAddingMonths - firstDayOfMonthFromStartDate).TotalDays;
+
+        for (var i = 0; i < numberOfDaysToReturn; i++)
+        {
+            var newDate = new DateField
+                {
+                    TheDate = firstDayOfMonthFromStartDate.AddDays(i),
+                    DayName = firstDayOfMonthFromStartDate.AddDays(i).DayOfWeek.ToString(),
+                    FormatedShortDate = firstDayOfMonthFromStartDate.AddDays(i).ToShortDateString()
+                };
+            if (newDate.DayName.ToLower() == "monday")
+            {
+                newDate.WeekNumber = System.Globalization.ISOWeek.GetWeekOfYear(newDate.TheDate);
+            }
+
+            datesToReturn.Add(newDate);
+        }
+
+        return datesToReturn;
+    }
+}
